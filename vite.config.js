@@ -8,8 +8,8 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    root: 'src',
-    base: '/goit-advancedjs-hw-01/', // Базовий шлях для GitHub Pages
+    root: './src', // Корінь проєкту
+    base: '/goit-advancedjs-hw-01/', // Оновлений базовий шлях
     build: {
       sourcemap: true,
       outDir: '../dist', // Вивід збірки у папку dist
