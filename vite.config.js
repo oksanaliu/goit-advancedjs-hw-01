@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: './src', // Корінь проєкту
-    base: '/goit-advancedjs-hw-01/', // Оновлений базовий шлях
+    base: '/', // Оновлений базовий шлях
     build: {
       sourcemap: true,
       outDir: '../dist', // Вивід збірки у папку dist
