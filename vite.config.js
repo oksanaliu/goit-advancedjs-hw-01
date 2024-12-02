@@ -10,6 +10,7 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
+    base: '/goit-advancedjs-hw-01/', // Додано базовий шлях
     build: {
       sourcemap: true,
       rollupOptions: {
