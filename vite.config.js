@@ -26,16 +26,21 @@ export default defineConfig(({ command }) => {
               return 'vendor';
             }
           },
-          entryFileNames: '[name].js',
-          assetFileNames: 'assets/[name]-[hash][extname]',
+          entryFileNames: '[name].js', // Імена JS файлів
+          assetFileNames: assetInfo => {
+            if (/\.css$/.test(assetInfo.name)) {
+              return 'css/[name]-[hash][extname]'; // Імена CSS файлів
+            }
+            return 'assets/[name]-[hash][extname]';
+          },
         },
       },
     },
     plugins: [
       injectHTML(), // Автоматичне ін'єктування HTML
-      FullReload(['./src/**/*.html']), // Повне перезавантаження під час змін
+      FullReload(['./src/**/*.html', './src/**/*.css', './src/**/*.js']), // Повне перезавантаження під час змін
       SortCss({
-        sort: 'mobile-first',
+        sort: 'mobile-first', // Сортування CSS за mobile-first
       }),
     ],
   };
