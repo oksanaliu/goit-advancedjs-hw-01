@@ -5,11 +5,10 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
   return {
-    // Корінь проєкту
+    // Корінь проекту (директорія src)
     root: './src',
-    // Базовий шлях для проєкту
+    // Базовий шлях для GitHub Pages
     base: '/goit-advancedjs-hw-01/',
-    // Швидший доступ до CSS/JS через псевдоніми
     resolve: {
       alias: {
         '/@css': '/src/css',
@@ -17,41 +16,34 @@ export default defineConfig(({ command }) => {
       },
     },
     build: {
-      // Вивід файлів збірки у папку dist
-      outDir: '../dist',
-      // Очищення папки dist перед збіркою
-      emptyOutDir: true,
-      sourcemap: true, // Генерація мап файлів для дебагу
+      sourcemap: true, // Генерація sourcemap для дебагу
+      outDir: '../dist', // Вихідна папка збірки
+      emptyOutDir: true, // Очищення вихідної папки перед збіркою
       rollupOptions: {
-        // Вхідні точки для різних HTML-сторінок
         input: {
-          main: './index.html', // Головна сторінка
-          gallery: './pages/gallery.html', // Галерея
-          feedback: './pages/feedback.html', // Зворотний зв'язок
+          main: './src/index.html', // Головна сторінка
+          gallery: './src/pages/gallery.html', // Сторінка галереї
+          feedback: './src/pages/feedback.html', // Сторінка зворотнього зв'язку
         },
-        // Виключення node_modules з Rollup
-        external: [
-          '/goit-advancedjs-hw-01/src/js/feedback.js',
-          '/goit-advancedjs-hw-01/src/css/feedback.css',
-        ],
+        output: {
+          assetFileNames: assetInfo => {
+            if (/\.css$/.test(assetInfo.name)) {
+              return 'css/[name]-[hash][extname]';
+            }
+            return 'assets/[name]-[hash][extname]';
+          },
+          entryFileNames: '[name].js',
+        },
       },
     },
     plugins: [
-      // Автоматичне оновлення HTML
-      injectHTML(),
-      // Повне перезавантаження при зміні HTML, CSS або JS
-      FullReload(['./src/**/*.html', './src/**/*.css', './src/**/*.js']),
-      // Сортування CSS правил для mobile-first
-      SortCss({
-        sort: 'mobile-first',
-      }),
+      injectHTML(), // Ін'єкція HTML
+      FullReload(['./src/**/*.html', './src/**/*.css', './src/**/*.js']), // Автоматичне оновлення під час змін
+      SortCss({ sort: 'mobile-first' }), // Сортування CSS для mobile-first
     ],
     server: {
-      host: true, // Доступ до сервера з локальної мережі
+      host: true, // Доступ через локальну мережу
       port: 3000, // Порт для запуску локального сервера
-    },
-    define: {
-      [command === 'serve' ? 'global' : '_global']: {}, // Уникаємо помилок через глобальні змінні
     },
   };
 });
