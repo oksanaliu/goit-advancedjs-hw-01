@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
@@ -10,37 +9,31 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
-    base: '/goit-advancedjs-hw-01/', // Додано базовий шлях
+    base: '/goit-advancedjs-hw-01/', // Базовий шлях для GitHub Pages
     build: {
       sourcemap: true,
+      outDir: '../dist', // Вивід збірки у папку dist
+      emptyOutDir: true,
       rollupOptions: {
-        input: glob.sync('./src/*.html'),
+        input: {
+          main: './src/index.html', // Головна сторінка
+          gallery: './src/pages/gallery.html', // Сторінка галереї
+          feedback: './src/pages/feedback.html', // Сторінка зворотнього зв'язку
+        },
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               return 'vendor';
             }
           },
-          entryFileNames: chunkInfo => {
-            if (chunkInfo.name === 'commonHelpers') {
-              return 'commonHelpers.js';
-            }
-            return '[name].js';
-          },
-          assetFileNames: assetInfo => {
-            if (assetInfo.name && assetInfo.name.endsWith('.html')) {
-              return '[name].[ext]';
-            }
-            return 'assets/[name]-[hash][extname]';
-          },
+          entryFileNames: '[name].js',
+          assetFileNames: 'assets/[name]-[hash][extname]',
         },
       },
-      outDir: '../dist',
-      emptyOutDir: true,
     },
     plugins: [
-      injectHTML(),
-      FullReload(['./src/**/**.html']),
+      injectHTML(), // Автоматичне ін'єктування HTML
+      FullReload(['./src/**/*.html']), // Повне перезавантаження під час змін
       SortCss({
         sort: 'mobile-first',
       }),
