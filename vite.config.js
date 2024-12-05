@@ -9,12 +9,12 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    base: '/goit-advancedjs-hw-01/',
+    base: './',
     root: 'src',
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/*.html'),
+        input: glob.sync('./src/**/*.html'),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
