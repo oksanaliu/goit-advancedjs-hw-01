@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
+import copy from 'rollup-plugin-copy';
 import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
@@ -43,6 +44,12 @@ export default defineConfig(({ command }) => {
       FullReload(['./src/**/**.html']),
       SortCss({
         sort: 'mobile-first',
+      }),
+      copy({
+        targets: [
+          { src: 'src/img/**/*', dest: '../dist/img' }, // Копіювання зображень
+        ],
+        hook: 'writeBundle',
       }),
     ],
   };
