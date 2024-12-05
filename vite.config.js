@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
-import viteStaticCopy from 'vite-plugin-static-copy';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import copy from 'rollup-plugin-copy';
 import SortCss from 'postcss-sort-media-queries';
 
@@ -11,6 +11,7 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
+    base: './',
     root: 'src',
     build: {
       sourcemap: true,
@@ -48,7 +49,7 @@ export default defineConfig(({ command }) => {
       viteStaticCopy({
         targets: [
           {
-            src: 'src/img/**/*', // Звідки копіювати
+            src: 'img/**/*', // Звідки копіювати
             dest: 'img', // Куди копіювати в dist
           },
         ],
