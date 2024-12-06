@@ -71,3 +71,13 @@ body {
 .form-submit:hover {
   background-color: #7c9aba;
 }
+
+.error-message {
+  margin-bottom: 20px;
+  padding: 10px;
+  color: #fff;
+  background-color: #ff6b6b;
+  border-radius: 5px;
+  font-size: 14px;
+  display: none;
+}
