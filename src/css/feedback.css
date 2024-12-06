@@ -1,41 +1,73 @@
 @import url('./reset.css');
-@import url('izitoast/dist/css/iziToast.min.css');
+
+body {
+  background-color: #f7f9fc;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #3b4e62;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+  background-color: #7c9aba;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
 
 .feedback-form {
   display: flex;
   flex-direction: column;
-  width: 600px;
-  padding: 40px;
-  margin: 0 auto;
-  box-shadow: 0 10px 10px 0 #cccccc;
 }
 
-.feedback-form-input {
-  height: 40px;
-  padding-left: 15px;
-  border: 1px solid #303030;
+.form-input,
+.form-textarea {
+  width: 100%;
   margin-bottom: 20px;
+  padding: 10px 15px;
+  border: 1px solid #ccd6dd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
-.feedback-form-message {
-  height: 120px;
-  padding: 15px;
-  border: 1px solid #303030;
-  margin-bottom: 20px;
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #3b4e62;
+}
+
+.form-textarea {
   resize: none;
+  height: 120px;
 }
 
-.feedback-form-submit {
+.form-submit {
   padding: 10px 20px;
-  background-color: transparent;
-  border: 1px solid #303030;
-  border-radius: 4px;
+  background-color: #3b4e62;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  align-self: center;
-  transition: transform 250ms linear;
+  transition: background-color 0.3s ease;
 }
 
-.feedback-form-submit:hover,
-.feedback-form-submit:focus {
-  transform: scale(1.05);
+.form-submit:hover {
+  background-color: #7c9aba;
 }
