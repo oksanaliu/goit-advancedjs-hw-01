@@ -1,5 +1,6 @@
 import { save, load } from './localStorage';
 import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const feedbackFormEl = document.querySelector('.js-feedback-form');
 const formData = {
