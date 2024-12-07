@@ -17,7 +17,7 @@
     "vite": "^5.4.6",
     "vite-plugin-static-copy": "^2.2.0"
   },
-  "author": "Alexander Repeta <lyuklyan4@icloud.com>",
+  "author": "Oksana Liuklian <lyuklyan4@icloud.com>",
   "license": "ISC",
   "dependencies": {
     "izitoast": "^1.4.0",
