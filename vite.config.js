@@ -14,9 +14,9 @@ export default defineConfig(({ command }) => ({
     sourcemap: true,
     rollupOptions: {
       input: {
-        index: './src/public/index.html', // Шлях до index.html
-        gallery: './src/public/1-gallery.html', // Шлях до 1-gallery.html
-        feedback: './src/public/2-form.html', // Шлях до 2-form.html
+        index: './src/public/index.html',
+        gallery: './src/public/1-gallery.html',
+        feedback: './src/public/2-form.html',
       },
       output: {
         manualChunks(id) {
@@ -28,7 +28,7 @@ export default defineConfig(({ command }) => ({
         assetFileNames: 'assets/[name]-[hash][extname]',
       },
     },
-    outDir: '../dist',
+    outDir: '../dist/public', // Усе буде зібрано в dist/public
     emptyOutDir: true,
   },
   plugins: [
