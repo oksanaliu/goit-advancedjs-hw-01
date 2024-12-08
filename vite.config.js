@@ -13,9 +13,9 @@ export default defineConfig(({ command }) => ({
     sourcemap: true,
     rollupOptions: {
       input: {
-        index: './public/index.html',
-        gallery: './public/gallery.html',
-        feedback: './public/feedback.html',
+        index: './src/public/index.html',
+        gallery: './src/public/gallery.html',
+        feedback: './src/public/feedback.html',
       },
       output: {
         manualChunks(id) {
@@ -32,7 +32,7 @@ export default defineConfig(({ command }) => ({
   },
   plugins: [
     injectHTML(),
-    FullReload(['./public/**/*.html']),
+    FullReload(['./src/public/**/*.html']),
     SortCss({
       sort: 'mobile-first',
     }),
