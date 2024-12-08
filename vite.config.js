@@ -15,9 +15,9 @@ export default defineConfig(({ command }) => {
       sourcemap: true,
       rollupOptions: {
         input: {
-          index: './src/public/index.html',
-          gallery: './src/public/gallery.html',
-          form: './src/public/feedback.html',
+          index: './src/public/index.html', // Основний файл
+          gallery: './src/public/gallery.html', // Галерея
+          form: './src/public/feedback.html', // Форма зворотного зв'язку
         },
         output: {
           manualChunks(id) {
@@ -40,11 +40,19 @@ export default defineConfig(({ command }) => {
       }),
       viteStaticCopy({
         targets: [
-          { src: './src/img/**/*', dest: 'img' },
-          { src: 'src/css/**/*', dest: 'css' },
-          { src: 'src/js/**/*', dest: 'js' },
+          {
+            src: 'src/img/**/*', // Зображення
+            dest: 'img',
+          },
+          {
+            src: 'src/css/**/*', // CSS
+            dest: 'css',
+          },
+          {
+            src: 'src/js/**/*', // JavaScript
+            dest: 'js',
+          },
         ],
-        verbose: true,
       }),
     ],
   };
