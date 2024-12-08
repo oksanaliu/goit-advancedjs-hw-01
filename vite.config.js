@@ -42,7 +42,7 @@ export default defineConfig(({ command }) => {
         targets: [
           {
             src: 'src/img/**/*', // Зображення
-            dest: 'img',
+            dest: 'assets/img',
           },
           {
             src: 'src/css/**/*', // CSS
