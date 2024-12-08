@@ -1,13 +1,14 @@
 import { defineConfig } from 'vite';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => ({
   define: {
     [command === 'serve' ? 'global' : '_global']: {},
   },
-  base: './',
+  base: '/goit-advancedjs-hw-01/',
   root: 'src',
   build: {
     sourcemap: true,
@@ -27,15 +28,26 @@ export default defineConfig(({ command }) => ({
         assetFileNames: 'assets/[name]-[hash][extname]',
       },
     },
-
     outDir: '../dist',
     emptyOutDir: true,
   },
   plugins: [
     injectHTML(),
-    FullReload(['./src/public/**/*.html']),
+    FullReload(['./src/**/**.html']),
     SortCss({
       sort: 'mobile-first',
+    }),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/img/**/*',
+          dest: 'assets/img',
+        },
+        {
+          src: 'src/css/**/*',
+          dest: 'assets/css',
+        },
+      ],
     }),
   ],
 }));
