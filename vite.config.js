@@ -40,16 +40,8 @@ export default defineConfig(({ command }) => ({
     viteStaticCopy({
       targets: [
         {
-          src: './src/img/**/*', // Копіюємо зображення з новим шляхом
-          dest: 'img',
-        },
-        {
-          src: './src/css/**/*', // Копіюємо стилі
-          dest: 'css',
-        },
-        {
-          src: './src/js/**/*', // Копіюємо скрипти
-          dest: 'js',
+          src: 'img/**/*', // Звідки копіювати
+          dest: 'img', // Куди копіювати в dist
         },
       ],
     }),
