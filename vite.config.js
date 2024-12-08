@@ -15,7 +15,11 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/public/*.html'), // Збираємо тільки файли з `src/public`
+        input: {
+          index: './src/public/index.html',
+          gallery: './src/public/1-gallery.html',
+          form: './src/public/2-form.html',
+        },
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -26,7 +30,7 @@ export default defineConfig(({ command }) => {
           assetFileNames: 'assets/[name]-[hash][extname]',
         },
       },
-      outDir: '../dist', // Вивід у папку dist
+      outDir: '../dist',
       emptyOutDir: true,
     },
     plugins: [
@@ -38,8 +42,8 @@ export default defineConfig(({ command }) => {
       viteStaticCopy({
         targets: [
           {
-            src: 'img/**/*', // Копіюємо зображення з `src/img`
-            dest: 'img', // У папку `dist/img`
+            src: 'img/**/*', // Копіюємо зображення
+            dest: 'img', // У `dist/img`
           },
         ],
       }),
