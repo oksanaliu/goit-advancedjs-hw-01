@@ -49,11 +49,7 @@ export default defineConfig(({ command }) => {
       viteStaticCopy({
         targets: [
           {
-            src: 'js/picturesData.json', // Звідки копіювати JSON
-            dest: 'js', // Куди копіювати в dist
-          },
-          {
-            src: 'img/**/*', // Звідки копіювати зображення
+            src: 'img/**/*', // Звідки копіювати
             dest: 'img', // Куди копіювати в dist
           },
         ],
