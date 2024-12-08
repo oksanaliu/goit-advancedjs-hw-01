@@ -27,6 +27,7 @@ export default defineConfig(({ command }) => ({
         assetFileNames: 'assets/[name]-[hash][extname]',
       },
     },
+
     outDir: '../dist',
     emptyOutDir: true,
   },
