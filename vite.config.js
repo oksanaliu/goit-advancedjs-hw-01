@@ -44,6 +44,7 @@ export default defineConfig(({ command }) => {
           { src: 'src/css/**/*', dest: 'css' },
           { src: 'src/js/**/*', dest: 'js' },
         ],
+        verbose: true,
       }),
     ],
   };
