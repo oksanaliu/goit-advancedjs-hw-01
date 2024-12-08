@@ -15,31 +15,31 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/public/*.html'), // Збір всіх HTML-файлів з папки public
+        input: glob.sync('./src/public/*.html'), // Збираємо тільки файли з `src/public`
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               return 'vendor';
             }
           },
-          entryFileNames: '[name].js', // Генерація імен для JS-файлів
-          assetFileNames: 'assets/[name]-[hash][extname]', // Генерація імен для CSS/шрифтів
+          entryFileNames: '[name].js',
+          assetFileNames: 'assets/[name]-[hash][extname]',
         },
       },
-      outDir: '../dist', // Збереження всіх зібраних файлів у dist
+      outDir: '../dist', // Вивід у папку dist
       emptyOutDir: true,
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/public/**/*.html']), // Автоматичне оновлення HTML-файлів
+      FullReload(['./src/public/**/*.html']),
       SortCss({
-        sort: 'mobile-first', // Сортування CSS mobile-first
+        sort: 'mobile-first',
       }),
       viteStaticCopy({
         targets: [
           {
-            src: 'img/**/*', // Копіювання зображень
-            dest: 'img', // Збереження зображень у dist/img
+            src: 'img/**/*', // Копіюємо зображення з `src/img`
+            dest: 'img', // У папку `dist/img`
           },
         ],
       }),
