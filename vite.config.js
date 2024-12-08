@@ -15,31 +15,31 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/public/*.html'), // Шлях до HTML-файлів у папці public
+        input: glob.sync('./src/public/*.html'), // Збір всіх HTML-файлів з папки public
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               return 'vendor';
             }
           },
-          entryFileNames: '[name].js', // Імена для JS-файлів
-          assetFileNames: 'assets/[name]-[hash][extname]', // Імена для CSS та інших файлів
+          entryFileNames: '[name].js', // Генерація імен для JS-файлів
+          assetFileNames: 'assets/[name]-[hash][extname]', // Генерація імен для CSS/шрифтів
         },
       },
-      outDir: '../dist', // Папка для зібраних файлів
+      outDir: '../dist', // Збереження всіх зібраних файлів у dist
       emptyOutDir: true,
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/**.html']), // Автоматичне оновлення HTML-файлів
+      FullReload(['./src/public/**/*.html']), // Автоматичне оновлення HTML-файлів
       SortCss({
-        sort: 'mobile-first', // Сортування CSS за принципом mobile-first
+        sort: 'mobile-first', // Сортування CSS mobile-first
       }),
       viteStaticCopy({
         targets: [
           {
-            src: 'img/**/*', // Звідки копіювати зображення
-            dest: 'img', // Куди копіювати в dist
+            src: 'img/**/*', // Копіювання зображень
+            dest: 'img', // Збереження зображень у dist/img
           },
         ],
       }),
