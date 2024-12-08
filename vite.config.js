@@ -14,9 +14,9 @@ export default defineConfig(({ command }) => ({
     sourcemap: true,
     rollupOptions: {
       input: {
-        index: './src/public/index.html',
-        gallery: './src/public/gallery.html',
-        feedback: './src/public/feedback.html',
+        index: './public/index.html',
+        gallery: './public/gallery.html',
+        feedback: './public/feedback.html',
       },
       output: {
         manualChunks(id) {
@@ -24,8 +24,18 @@ export default defineConfig(({ command }) => ({
             return 'vendor';
           }
         },
-        entryFileNames: '[name].js',
-        assetFileNames: 'assets/[name]-[hash][extname]',
+        entryFileNames: chunkInfo => {
+          if (chunkInfo.name === 'commonHelpers') {
+            return 'commonHelpers.js';
+          }
+          return '[name].js';
+        },
+        assetFileNames: assetInfo => {
+          if (assetInfo.name && assetInfo.name.endsWith('.html')) {
+            return '[name].[ext]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
       },
     },
     outDir: '../dist',
@@ -33,17 +43,17 @@ export default defineConfig(({ command }) => ({
   },
   plugins: [
     injectHTML(),
-    FullReload(['./src/public/**/*.html']),
+    FullReload(['./**/*.html']),
     SortCss({
       sort: 'mobile-first',
     }),
     viteStaticCopy({
       targets: [
-        { src: './src/img/**/*', dest: 'img' },
-        { src: './src/css/**/*', dest: 'css' },
-        { src: './src/js/**/*', dest: 'js' },
+        {
+          src: './img/**/*', // Шлях до ваших зображень
+          dest: 'img', // Куди копіювати у dist
+        },
       ],
-      verbose: true,
     }),
   ],
 }));
