@@ -10,36 +10,6 @@ body {
   font-style: normal;
 }
 
-* {
-  font-style: normal;
-}
-
-.back-link,
-.back-button {
-  display: inline-block;
-  margin: 20px;
-  padding: 10px 20px;
-  color: #fff;
-  background-color: #3b4e62;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.back-link:hover,
-.back-button:hover {
-  background-color: #7c9aba;
-}
-
-.form-container {
-  max-width: 600px;
-  margin: 0px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
 .feedback-form {
   max-width: 600px;
   margin: 50px auto;
@@ -60,7 +30,6 @@ body {
 .form-input,
 .form-textarea {
   width: 100%;
-
   margin-bottom: 20px;
   padding: 10px 15px;
   border: 1px solid #ccd6dd;

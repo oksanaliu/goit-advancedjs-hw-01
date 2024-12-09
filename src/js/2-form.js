@@ -9,6 +9,7 @@ const formData = {
   message: '',
 };
 
+// Заповнення форми даними з localStorage
 const fillFormField = () => {
   const formDataFromLS = load('feedback-form-state');
 
@@ -25,6 +26,7 @@ const fillFormField = () => {
   }
 };
 
+// Зміни в полі форми
 const onFormFieldChange = event => {
   const { name, value } = event.target;
 
@@ -32,6 +34,7 @@ const onFormFieldChange = event => {
   save('feedback-form-state', formData);
 };
 
+// Сабміт форми
 const onFeedbackFormSubmit = event => {
   event.preventDefault();
 
@@ -40,7 +43,7 @@ const onFeedbackFormSubmit = event => {
   if (!email || !message) {
     iziToast.error({
       title: 'Error',
-      message: 'Fill please all fields!',
+      message: 'Fill all form fields!',
       position: 'topRight',
       timeout: 3000,
     });
