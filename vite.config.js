@@ -45,6 +45,10 @@ export default defineConfig(({ command }) => {
             src: './img/**/*', // Шлях до зображень
             dest: 'img', // Куди копіювати в dist
           },
+          {
+            src: './js/**/*', // JS-файли
+            dest: 'js',
+          },
         ],
       }),
     ],
