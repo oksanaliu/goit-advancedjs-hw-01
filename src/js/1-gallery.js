@@ -1,4 +1,4 @@
-import pictures from './picturesData.json';
+import pictures from '../picturesData.json';
 import { createGalleryCardsTemplate } from './render-functions';
 
 import SimpleLightbox from 'simplelightbox';
