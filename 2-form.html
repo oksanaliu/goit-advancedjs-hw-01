@@ -8,7 +8,7 @@
   <title>Feedback Form</title>
   <script type="module" crossorigin src="/goit-advancedjs-hw-01/2-form.js"></script>
   <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-01/assets/modulepreload-polyfill-B5Qt9EMX.js">
-  <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-01/assets/vendor-B2mb6eXk.js">
+  <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-01/assets/vendor-CFN7KfbC.js">
   <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-01/assets/vendor-Dr4k8ETB.css">
   <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-01/assets/2-form-CsPse0LU.css">
 </head>
@@ -16,12 +16,17 @@
 <body>
   <p><a href="./index.html" class="back-link">Go back</a></p>
   <div class="form-container">
-    <form class="feedback-form js-feedback-form">
-      <div class="error-message js-error-message"></div>
-      <input name="user_name" type="text" class="form-input" placeholder="Введіть імʼя" />
-      <input name="user_email" type="email" class="form-input js-feedback-email" placeholder="Введіть email" />
-      <textarea name="user_message" class="form-textarea" placeholder="Введіть повідомлення"></textarea>
-      <button class="form-submit" type="submit">Submit</button>
+    <form class="feedback-form js-feedback-form" autocomplete="off">
+      <div class="error-message js-error-message">Please fill out all fields!</div>
+      <label>
+        Email
+        <input type="email" name="email" class="form-input" placeholder="Enter email" />
+      </label>
+      <label>
+        Message
+        <textarea name="message" class="form-textarea" placeholder="Enter your message"></textarea>
+      </label>
+      <button type="submit" class="form-submit">Submit</button>
     </form>
   </div>
 </body>
