@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
   {
     preview:
@@ -64,89 +67,22 @@ const images = [
   },
 ];
 
-const galleryContainer = document.querySelector('.gallery');
+const galleryEl = document.querySelector('.js-gallery');
 
-const galleryMarkup = images
-  .map(
-    ({ preview, original, description }) => `
-  <li class="gallery-item">
-    <a class="gallery-link" href="${original}">
-      <img
-        class="gallery-image"
-        src="${preview}"
-        data-source="${original}"
-        alt="${description}"
-      />
-    </a>
-  </li>
-`
-  )
+const createGalleryMarkup = images
+  .map(({ preview, original, description }) => {
+    return `
+      <li class="gallery__item">
+        <a class="gallery__link" href="${original}">
+          <img class="gallery__image" src="${preview}" alt="${description}" />
+        </a>
+      </li>`;
+  })
   .join('');
 
-galleryContainer.innerHTML = galleryMarkup;
+galleryEl.innerHTML = createGalleryMarkup;
 
-let currentIndex = 0;
-
-const showImage = index => {
-  const { original, description } = images[index];
-  return `
-    <div class="modal-content">
-      <button class="btn-close" aria-label="Close">&times;</button>
-      <button class="btn-prev">&larr;</button>
-      <img src="${original}" alt="${description}" class="modal-image">
-      <button class="btn-next">&rarr;</button>
-    </div>
-  `;
-};
-
-galleryContainer.addEventListener('click', event => {
-  event.preventDefault();
-
-  const isImage = event.target.classList.contains('gallery-image');
-  if (!isImage) return;
-
-  const originalImageURL = event.target.dataset.source;
-  currentIndex = images.findIndex(image => image.original === originalImageURL);
-
-  const instance = basicLightbox.create(showImage(currentIndex), {
-    onShow: instance => {
-      const modalElement = instance.element();
-
-      const closeButton = modalElement.querySelector('.btn-close');
-      const prevButton = modalElement.querySelector('.btn-prev');
-      const nextButton = modalElement.querySelector('.btn-next');
-
-      const showNextImage = () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        instance.element().innerHTML = showImage(currentIndex);
-        addListeners();
-      };
-
-      const showPrevImage = () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        instance.element().innerHTML = showImage(currentIndex);
-        addListeners();
-      };
-
-      const closeModal = () => {
-        instance.close();
-      };
-
-      const addListeners = () => {
-        modalElement
-          .querySelector('.btn-close')
-          .addEventListener('click', closeModal);
-        modalElement
-          .querySelector('.btn-next')
-          .addEventListener('click', showNextImage);
-        modalElement
-          .querySelector('.btn-prev')
-          .addEventListener('click', showPrevImage);
-      };
-
-      addListeners();
-    },
-  });
-
-  instance.show();
+new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
 });
