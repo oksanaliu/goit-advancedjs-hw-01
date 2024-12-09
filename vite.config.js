@@ -16,9 +16,9 @@ export default defineConfig(({ command }) => {
       sourcemap: true,
       rollupOptions: {
         input: {
-          index: './src/index.html',
-          gallery: './src/1-gallery.html',
-          form: './src/2-form.html',
+          index: './index.html',
+          gallery: './1-gallery.html',
+          form: './2-form.html',
         },
         output: {
           manualChunks(id) {
