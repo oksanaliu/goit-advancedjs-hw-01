@@ -3,7 +3,6 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const feedbackFormEl = document.querySelector('.js-feedback-form');
-const errorMessageEl = document.querySelector('.js-error-message');
 
 const formData = {
   email: '',
@@ -31,8 +30,6 @@ const onFormFieldChange = event => {
 
   formData[name] = value.trim();
   save('feedback-form-state', formData);
-
-  errorMessageEl.style.display = 'none';
 };
 
 const onFeedbackFormSubmit = event => {
@@ -41,7 +38,12 @@ const onFeedbackFormSubmit = event => {
   const { email, message } = formData;
 
   if (!email || !message) {
-    errorMessageEl.style.display = 'block';
+    iziToast.error({
+      title: 'Error',
+      message: 'Fill all form fields!',
+      position: 'topRight',
+      timeout: 3000,
+    });
     return;
   }
 
@@ -51,7 +53,13 @@ const onFeedbackFormSubmit = event => {
   localStorage.removeItem('feedback-form-state');
   formData.email = '';
   formData.message = '';
-  errorMessageEl.style.display = 'none';
+
+  iziToast.success({
+    title: 'Success',
+    message: 'Form submitted successfully!',
+    position: 'topRight',
+    timeout: 3000, //
+  });
 };
 
 fillFormField();
