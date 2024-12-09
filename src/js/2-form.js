@@ -9,24 +9,27 @@ const formData = {
   message: '',
 };
 
-// Заповнення форми даними з localStorage
+const isValidEmail = email => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 const fillFormField = () => {
   const formDataFromLS = load('feedback-form-state');
 
   if (!formDataFromLS) return;
 
-  if (formDataFromLS.email) {
+  if (formDataFromLS.email !== undefined) {
     feedbackFormEl.elements.email.value = formDataFromLS.email;
     formData.email = formDataFromLS.email;
   }
 
-  if (formDataFromLS.message) {
+  if (formDataFromLS.message !== undefined) {
     feedbackFormEl.elements.message.value = formDataFromLS.message;
     formData.message = formDataFromLS.message;
   }
 };
 
-// Зміни в полі форми
 const onFormFieldChange = event => {
   const { name, value } = event.target;
 
@@ -34,7 +37,6 @@ const onFormFieldChange = event => {
   save('feedback-form-state', formData);
 };
 
-// Сабміт форми
 const onFeedbackFormSubmit = event => {
   event.preventDefault();
 
@@ -44,6 +46,16 @@ const onFeedbackFormSubmit = event => {
     iziToast.error({
       title: 'Error',
       message: 'Fill all form fields!',
+      position: 'topRight',
+      timeout: 3000,
+    });
+    return;
+  }
+
+  if (!isValidEmail(email)) {
+    iziToast.error({
+      title: 'Error',
+      message: 'Enter a valid email address!',
       position: 'topRight',
       timeout: 3000,
     });
