@@ -31,6 +31,8 @@ const onFormFieldChange = event => {
 
   formData[name] = value.trim();
   save('feedback-form-state', formData);
+
+  errorMessageEl.style.display = 'none';
 };
 
 const onFeedbackFormSubmit = event => {
