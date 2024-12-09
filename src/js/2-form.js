@@ -3,59 +3,56 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const feedbackFormEl = document.querySelector('.js-feedback-form');
+const errorMessageEl = document.querySelector('.js-error-message');
+
 const formData = {
-  user_name: '',
-  user_email: '',
-  user_message: '',
+  email: '',
+  message: '',
 };
 
 const fillFormField = () => {
   const formDataFromLS = load('feedback-form-state');
 
-  if (formDataFromLS === undefined) {
-    return;
+  if (!formDataFromLS) return;
+
+  if (formDataFromLS.email) {
+    feedbackFormEl.elements.email.value = formDataFromLS.email;
+    formData.email = formDataFromLS.email;
   }
 
-  const formDataFromLSKeys = Object.keys(formDataFromLS);
-
-  formDataFromLSKeys.forEach(key => {
-    feedbackFormEl.elements[key].value = formDataFromLS[key];
-    formData[key] = formDataFromLS[key];
-  });
-
-  console.log(formData);
+  if (formDataFromLS.message) {
+    feedbackFormEl.elements.message.value = formDataFromLS.message;
+    formData.message = formDataFromLS.message;
+  }
 };
 
-fillFormField();
-
 const onFormFieldChange = event => {
-  const { target: formField } = event;
+  const { name, value } = event.target;
 
-  const fieldName = formField.name;
-  const fieldValue = formField.value;
-
-  formData[fieldName] = fieldValue;
-
+  formData[name] = value.trim();
   save('feedback-form-state', formData);
 };
 
 const onFeedbackFormSubmit = event => {
   event.preventDefault();
 
-  const formDataValues = Object.values(formData);
+  const { email, message } = formData;
 
-  if (formDataValues.some(el => el === '')) {
-    iziToast.error({
-      message: 'Fill all form fields!',
-      position: 'topRight',
-    });
-
+  if (!email || !message) {
+    errorMessageEl.style.display = 'block';
     return;
   }
 
-  event.currentTarget.reset();
+  console.log('Form submitted with data:', formData);
+
+  feedbackFormEl.reset();
   localStorage.removeItem('feedback-form-state');
+  formData.email = '';
+  formData.message = '';
+  errorMessageEl.style.display = 'none';
 };
 
-feedbackFormEl.addEventListener('change', onFormFieldChange);
+fillFormField();
+
+feedbackFormEl.addEventListener('input', onFormFieldChange);
 feedbackFormEl.addEventListener('submit', onFeedbackFormSubmit);

@@ -13,12 +13,17 @@
 <body>
   <p><a href="./index.html" class="back-link">Go back</a></p>
   <div class="form-container">
-    <form class="feedback-form js-feedback-form">
-      <div class="error-message js-error-message"></div>
-      <input name="user_name" type="text" class="form-input" placeholder="Введіть імʼя" />
-      <input name="user_email" type="email" class="form-input js-feedback-email" placeholder="Введіть email" />
-      <textarea name="user_message" class="form-textarea" placeholder="Введіть повідомлення"></textarea>
-      <button class="form-submit" type="submit">Submit</button>
+    <form class="feedback-form js-feedback-form" autocomplete="off">
+      <div class="error-message js-error-message">Please fill out all fields!</div>
+      <label>
+        Email
+        <input type="email" name="email" class="form-input" placeholder="Enter email" />
+      </label>
+      <label>
+        Message
+        <textarea name="message" class="form-textarea" placeholder="Enter your message"></textarea>
+      </label>
+      <button type="submit" class="form-submit">Submit</button>
     </form>
   </div>
 </body>
