@@ -11,7 +11,8 @@ export default defineConfig(({ command }) => {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    base: './',
+
+    base: mode === 'production' ? '/goit-advancedjs-hw-01/' : './',
     root: 'src',
     build: {
       sourcemap: true,
