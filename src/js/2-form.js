@@ -40,7 +40,7 @@ const onFeedbackFormSubmit = event => {
   if (!email || !message) {
     iziToast.error({
       title: 'Error',
-      message: 'Fill all form fields!',
+      message: 'Fill please all fields!',
       position: 'topRight',
       timeout: 3000,
     });
@@ -58,7 +58,7 @@ const onFeedbackFormSubmit = event => {
     title: 'Success',
     message: 'Form submitted successfully!',
     position: 'topRight',
-    timeout: 3000, //
+    timeout: 3000,
   });
 };
 
