@@ -63,3 +63,18 @@ p {
 .sl-overlay {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+  .back-button {
+    padding: 8px 16px;
+  }
+}

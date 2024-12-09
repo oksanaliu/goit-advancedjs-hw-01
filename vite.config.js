@@ -6,7 +6,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import copy from 'rollup-plugin-copy';
 import SortCss from 'postcss-sort-media-queries';
 
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
   return {
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
