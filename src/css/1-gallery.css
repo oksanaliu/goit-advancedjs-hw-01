@@ -23,8 +23,10 @@ p {
   text-align: left;
 }
 
+.back-link,
 .back-button {
   display: inline-block;
+  margin: 20px;
   padding: 10px 20px;
   color: #fff;
   background-color: #3b4e62;
@@ -33,6 +35,7 @@ p {
   transition: background-color 0.3s ease;
 }
 
+.back-link:hover,
 .back-button:hover {
   background-color: #7c9aba;
 }
@@ -62,19 +65,4 @@ p {
 
 .sl-overlay {
   background-color: rgba(0, 0, 0, 0.8);
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 10px;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-  }
-
-  .back-button {
-    padding: 8px 16px;
-  }
 }

@@ -7,7 +7,8 @@ body {
   padding: 0;
 }
 
-.back-link {
+.back-link,
+.back-button {
   display: inline-block;
   margin: 20px;
   padding: 10px 20px;
@@ -18,9 +19,11 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.back-link:hover {
+.back-link:hover,
+.back-button:hover {
   background-color: #7c9aba;
 }
+
 
 .form-container {
   max-width: 600px;
