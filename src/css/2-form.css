@@ -10,6 +10,10 @@ body {
   font-style: normal;
 }
 
+* {
+  font-style: normal;
+}
+
 .back-link,
 .back-button {
   display: inline-block;
